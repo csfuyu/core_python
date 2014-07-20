@@ -21,9 +21,15 @@ c = 3.3 + 1
 
 print id(a)
 print id(b)
+print "a is b:",
 print a is b
 print id(c)
+print "c is b:",
 print c is b
+print "c == b:",
+print c == b
+print isinstance(a,type("a"))
+print dir(a)
 
 # cmp
 a, b = 'abc', 'aby'

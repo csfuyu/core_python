@@ -1,8 +1,9 @@
 def switch(m_array, index1, index2):
-    tmp = m_array[index1]
-    m_array[index1] = m_array[index2]
-    m_array[index2] = tmp
-
+    #tmp = m_array[index1]
+    #m_array[index1] = m_array[index2]
+    #m_array[index2] = tmp
+    m_array[index1],m_array[index2] = m_array[index2],m_array[index1]
+    
 def sort(m_array):
     if m_array[1] < m_array[0]:
         switch(m_array,1,0)
