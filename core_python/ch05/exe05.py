@@ -3,6 +3,7 @@
 #    (a) 写一个函数，计算并返回两个数的乘积
 #    (b) 写一段代码调用这个函数，并显示它的结果
 import math
+import sys
 
 def multi(a, b):
     return a * b
@@ -158,6 +159,138 @@ def test5_9():
     print 017 + 032
     print 561 + 781
     
+'''
+5-10 转换。写一对函数来进行华氏度到摄氏度的转换。转换公式为C = (F - 32) * (5 / 9)
+应该在这个练习中使用真正的除法， 否则你会得到不正确的结果
+'''
+def f_to_c(myf):
+    return (myf-32) * (5.0/9)
+    
+def test5_10():
+    print round(f_to_c(32),1)
+    print round(f_to_c(33),1)
+    print round(f_to_c(42),1)
+    
+'''
+5-11 取余。
+(a) 使用循环和算术运算，求出 0－20 之间的所有偶数
+(b) 同上，不过这次输出所有的奇数
+(c) 综合 (a) 和 (b)， 请问辨别奇数和偶数的最简单的方法是什么？
+(d) 使用(c)的成果，写一个函数，检测一个整数能否被另一个整数整除。 先要求用户输
+入两个数，然后你的函数判断两者是否有整除关系，根据判断结果分别返回 True 和 False;
+'''
+def find_even(maxnumber):
+    returnlist = []
+    i = 0
+    while(i < maxnumber):
+        returnlist.append(i)
+        i = i + 2
+    return returnlist
+
+def find_odd(maxnumber):
+    returnlist = []
+    i = 1
+    while(i < maxnumber):
+        returnlist.append(i)
+        i = i + 2
+    return returnlist
+
+def test5_11():
+    print find_even(20)
+    print find_odd(20)
+          
+'''
+5-12 系统限制。写一段脚本确认一下你的Python 所能处理的整数，长整数，浮点数和复
+数的范围
+'''
+def test5_12():
+    print sys.maxint
+    print sys.float_info.max
+    print sys.float_info.min
+          
+'''
+5–15. 最大公约数和最小公倍数。请计算两个整数的最大公约数和最小公倍数。
+'''
+def gc_divisor(a,b):
+    if a > b:
+        pivot = b
+    else:
+        pivot = a
+    i = 1
+    divisor = 1
+    while(i <= pivot):
+        if(a % i == 0 and b % i == 0):
+            divisor = i
+        i = i + 1
+    return divisor
+
+def lc_multiple(a,b):
+    if a > b:
+        bro = a
+        sis = b
+    else:
+        sis = a
+        bro = b
+    
+    common_multiple = bro
+        
+    while(common_multiple % sis != 0):
+        common_multiple = bro + common_multiple
+    
+    return common_multiple
+    
+def test5_15():
+    print gc_divisor(20,40)    
+    print gc_divisor(12,28)
+    print gc_divisor(120,55)
+    print gc_divisor(-309,139)
+    print lc_multiple(20,40)    
+    print lc_multiple(12,28)
+    print lc_multiple(120,55)
+    print lc_multiple(309,139)
+    
+    
+'''
+5-16 家庭财务。给定一个初始金额和月开销数， 使用循环，确定剩下的金额和当月的支
+出数， 包括最后的支出数。 Payment() 函数会用到初始金额和月额度， 输出结果应该类似下
+面的格式（例子中的数字仅用于演示）：
+Enter opening balance:100.00
+Edit By Vheavens
+Edit By Vheavens
+Enter monthly payment: 16.13
+Amount Remaining
+Pymt# Paid Balance
+----- ------ ---------
+0 $ 0.00 $100.00
+1 $16.13 $ 83.87
+2 $16.13 $ 67.74
+3 $16.13 $ 51.61
+4 $16.13 $ 35.48
+5 $16.13 $ 19.35
+6 $16.13 $ 3.22
+7 $ 3.22 $ 0.00
+'''
+def payment(balance, paid):
+    returnBalance = [balance]
+    while((balance - paid) > 0):
+        balance = balance - paid
+        returnBalance.append(balance)
+    returnBalance.append(0.0)
+    return returnBalance
+
+def test5_16(balance,paid):
+    print "Pymt#     Paid        Balance"
+    print "-----     ------      -------"
+    print "0         $ 0.00      $", balance
+    
+    #print payment(balance,paid)
+    balanceResult = payment(balance,paid)
+    i = 1
+    while(i < len(balanceResult)):
+        print i, "        $", paid, "    $ ", balanceResult[i]
+        i = i + 1
+    
+
 if __name__ == "__main__":
-    test5_9()
+    test5_16(100,16.13)
     
